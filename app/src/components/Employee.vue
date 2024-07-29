@@ -1,7 +1,7 @@
 
 <template>
   <div>
-   
+       <AddEmployee v-if="showModal" @close="showModal = false" />
     <table>
       <thead>
         <tr>
@@ -20,7 +20,7 @@
           <td>{{ employee.department }}</td>
           <td class="action-btns"><span class="update">Edit</span> <span class="delete" @click="handleDelete(employee.id)" >Delete</span></td>
         </tr>
-        
+
       </tbody>
     </table>
   
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import AddEmployee from './AddEmployee.vue';
+
 const db = [
     {
       "id": 1,
@@ -131,7 +133,9 @@ const db = [
 
 
 export default {
-  
+  components:{
+AddEmployee
+  },
     methods: {
     handleDelete(employeeId) {
       // Find the employee index based on the employeeId
